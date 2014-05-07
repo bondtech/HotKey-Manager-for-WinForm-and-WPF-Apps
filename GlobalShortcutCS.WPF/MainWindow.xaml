@@ -1,0 +1,58 @@
+﻿<Window x:Class="GlobalShortcutCS.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="A Media Player implementing Global shortcuts." Height="350" Width="525" WindowStartupLocation="CenterScreen" Background="#FF341B1B" xmlns:my="clr-namespace:BondTech.HotKeyManagement.WPF;assembly=HotKeyManagement.WPF" xmlns:my1="clr-namespace:BondTech.HotKeyManagement.WPF._4;assembly=HotKeyManagement.WPF.4">
+    <Grid Loaded="Grid_Loaded">
+        <Grid.Resources>
+        </Grid.Resources>
+        <MediaElement x:Name="myMediaPlayer" UnloadedBehavior="Manual" Margin="0,0,0,111" ScrubbingEnabled="True" />
+        <Button Content="Play / Pause" Height="23" HorizontalAlignment="Left" Margin="14,0,0,9" Name="btnPlay" VerticalAlignment="Bottom" Width="75" Click="btnPlay_Click">
+            <Button.ToolTip>
+                <StackPanel>
+                    <TextBlock><Run FontFamily="Segoe Script" FontSize="14">Play or Pause Media.</Run>
+                    <LineBreak />
+                        <Run>Plays the currently loaded media or pauses it.</Run>
+                        <LineBreak />
+                        <Run>Local HotKey: Space</Run><LineBreak />
+                        <Run>Global HotKey: Control + Shift + P</Run><LineBreak />
+                        <Run>Chord HotKey: Control + P, Control + M</Run>
+                    </TextBlock>
+                </StackPanel>
+            </Button.ToolTip>
+        </Button>
+        <Button Content="Stop" Height="23" HorizontalAlignment="Left" Margin="95,0,0,9" Name="button2" VerticalAlignment="Bottom" Width="75" Click="button2_Click">
+            <Button.ToolTip>
+                <StackPanel>
+                    <TextBlock><Run FontFamily="Segoe Script" FontSize="14">Stop Media.</Run>
+                    <LineBreak />
+                        <Run>Stops playing the currently loaded media.</Run>
+                        <LineBreak />
+                        <Run>Local HotKey: Key.S</Run><LineBreak />
+                        <Run>Global HotKey: Shift + Alt + S</Run><LineBreak />
+                        <Run>Chord HotKey: Control + S, Control + M</Run>
+                    </TextBlock>
+                </StackPanel>
+            </Button.ToolTip>
+        </Button>
+        <Button Content="Find File" Height="23" HorizontalAlignment="Left" Margin="176,0,0,9" Name="button3" VerticalAlignment="Bottom" Width="75" Click="button3_Click">
+            <Button.ToolTip>
+                <StackPanel>
+                    <TextBlock><Run FontFamily="Segoe Script" FontSize="14">Find Media.</Run>
+                    <LineBreak />
+                        <Run>Opens a file dialog that allows you select a file to play</Run>
+                        <LineBreak />
+                        <Run>Local HotKey: Enter</Run><LineBreak />
+                        <Run>Global HotKey: Control + Shift + F</Run><LineBreak />
+                        <Run>Chord HotKey: Control + F, Control + M</Run>
+                    </TextBlock>
+                </StackPanel>
+            </Button.ToolTip>
+        </Button>
+        <Slider Margin="12,0,12,78" Template="{StaticResource HorizontalSlider}" Height="14" VerticalAlignment="Bottom" ToolTip="Media Timeline" Name="TimeLine" PreviewMouseLeftButtonDown="TimeLine_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="TimeLine_PreviewMouseLeftButtonUp" MouseLeftButtonUp="TimeLine_MouseLeftButtonUp" Background="{x:Null}" Foreground="Red" BorderBrush="{x:Null}" IsMoveToPointEnabled="True" TickPlacement="None" SnapsToDevicePixels="False" OpacityMask="{x:Null}" IsSnapToTickEnabled="False" IsSelectionRangeEnabled="False" IsTabStop="False" AutoToolTipPlacement="None"></Slider>
+        <Slider Height="18" HorizontalAlignment="Right" Margin="0,0,12,12" Name="volumeControl" VerticalAlignment="Bottom" Width="75" Orientation="Horizontal" Template="{StaticResource HorizontalSlider}" Value="0.5" ToolTip="Volume Control" SmallChange="0.01" Maximum="1" LargeChange="0.1" ValueChanged="volumeControl_ValueChanged" />
+        <my:HotKeyControl Height="33" HorizontalAlignment="Right" Margin="0,0,12,36" Name="hotKeyControl1" VerticalAlignment="Bottom" Width="178" ForceModifiers="{Binding ElementName=chkforcemodifier, Path=IsChecked}" ToolTip="HotKeyControl in .Net 3.0" />
+        <CheckBox x:Name="chkforcemodifier" Content="Force Modifiers" Height="16" HorizontalAlignment="Right" Margin="0,0,90,0" VerticalAlignment="Bottom" Width="100" IsChecked="True" />
+        <my1:HotKeyControl Height="33" HorizontalAlignment="Left" Margin="14,0,0,36" Name="hotKeyControl2" VerticalAlignment="Bottom" Width="156" ToolTip="HotKeyControl in .Net 4.0" ForceModifiers="{Binding ElementName=chkforcemodifier, Path=IsChecked}" />
+        <!--<my:AnotherControl Height="27" HorizontalAlignment="Left" Margin="46,239,0,0" Name="anotherControl1" VerticalAlignment="Top" Width="143" />-->
+    </Grid>
+</Window>
